@@ -1,0 +1,48 @@
+<section class="add-user">
+    <h1 class="text-center">Form add user</h1>
+    <br>
+    <form action="" class="add-user-form" (ngSubmit)="handleSubmit()" [formGroup]="userFormControl">
+        <mdb-form-control class="margin-bottom-space">
+            <input mdbInput mdbValidate formControlName="firstName" type="text" class="form-control" id="first-name">
+            <label mdbLabel for="firt-name" class="form-label">first name</label>
+            <mdb-error *ngIf="getFirstName?.invalid && getFirstName?.touched" >first name is required</mdb-error>
+        </mdb-form-control>
+
+        <mdb-form-control class="margin-bottom-space">
+            <input mdbInput mdbValidate formControlName="lastName" type="text" class="form-control" id="last-name">
+            <label mdbLabel for="last-name" class="form-label">last name</label>
+            <mdb-error *ngIf="getLastName?.invalid && getLastName?.touched" >last name is required</mdb-error>
+        </mdb-form-control>
+
+        <mdb-form-control class="margin-bottom-space">
+            <input mdbInput mdbValidate formControlName="email" type="email" class="form-control" id="email">
+            <label mdbLabel for="email" class="form-label">email</label>
+            <mdb-error *ngIf="getEmail?.getError('required') && getEmail?.touched" >email is required</mdb-error>
+            <mdb-error *ngIf="getEmail?.getError('email') && getEmail?.touched" >email is invalid</mdb-error>
+        </mdb-form-control>
+
+        <mdb-form-control class="margin-bottom-space">
+            <input mdbInput mdbValidate formControlName="phone" type="phone" class="form-control" id="phone">
+            <label mdbLabel for="phone" class="form-label">phone</label>
+            <mdb-error *ngIf="getPhone?.invalid && getPhone?.touched" >phone is required</mdb-error>
+        </mdb-form-control>
+
+        <mdb-form-control class="margin-bottom-space">
+            <input mdbInput formControlName="DOB" type="date" class="form-control" id="DOB">
+            <label mdbLabel for="DOB" class="form-label">DOB</label>
+            <mdb-error *ngIf="getDOB?.invalid && getDOB?.touched" >first name is required</mdb-error>
+        </mdb-form-control>
+
+        <mdb-form-control class="margin-bottom-space">
+            <select mdbInput mdbValidate formControlName="status" class="form-control form-select" id="status">
+                <option value="1">activated</option>
+                <option value="2">suspended</option>
+            </select>
+            <label mdbLabel for="status" class="form-label">status</label>
+            <mdb-error *ngIf="getStatus?.invalid && getStatus?.touched" >first name is required</mdb-error>
+        </mdb-form-control>
+
+        <a routerLink="/home" class="btn btn-dark">back</a>
+        <button type="submit" class="btn btn-primary"> add user </button>
+    </form>
+</section>

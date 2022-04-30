@@ -1,0 +1,70 @@
+.list-user {
+    width: 90%;
+    margin: 2rem auto;
+
+    .list-user-header {
+        margin: 2rem 0;
+       
+
+        .list-user-header-search {
+            display: flex;
+            margin-top: 1rem;
+
+            .btn {
+                margin-left: .5rem;
+            }
+        }
+    }
+
+    .list-user-content {
+        width: 100%;
+        overflow-x: scroll;
+
+        .email-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            span {
+                margin-right: 1rem;
+            }
+
+            svg {
+                cursor: pointer;
+            }
+        }
+    
+        .td-action-format {
+            display: flex;
+            justify-content: center;
+        }
+
+        .status-content {
+            min-width: 150px;
+        }
+
+        td {
+            height: 5rem;
+        }
+    }
+
+    .pagination {
+        justify-content: center;
+        
+        li {
+            margin: 0 1rem;
+        }
+
+        li:hover {
+            cursor: pointer;
+        }
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .list-user-content {
+        td {
+            height: 7rem !important;
+        }
+    }
+}

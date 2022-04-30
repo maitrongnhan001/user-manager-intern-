@@ -1,0 +1,25 @@
+<div class="login-wrapper">
+    <div class="login-container">
+        <br>
+        <h2 class="text-center">Admin Login</h2>
+        <br>
+        <form class="login-form" (ngSubmit)="handleSubmit()" [formGroup]="loginFormControl">
+            <mdb-form-control class="margin-bottom-space">
+                <input mdbInput mdbValidate="" formControlName="email" type="email" id="email-login" class="form-control">
+                <label mdbLabel class="form-label" for="email-login">Email</label>
+                <mdb-error *ngIf="getEmail?.getError('required') && getEmail?.touched" class="custom-notification-input-text">email is required</mdb-error>
+                <mdb-error *ngIf="getEmail?.getError('email') && getEmail?.touched" class="custom-notification-input-text">email is invalid</mdb-error>
+            </mdb-form-control>
+
+            <mdb-form-control class="margin-bottom-space">
+                <input mdbInput mdbValidate formControlName="password" type="password" id="password-login" class="form-control">
+                <label mdbLabel class="form-label" for="password-login">Password</label>
+                <mdb-error *ngIf="getPassword?.getError('required') && getPassword?.touched" class="custom-notification-input-text">email is required</mdb-error>
+            </mdb-form-control>
+
+            <p *ngIf="this.errorLogin" class="text-center text-danger">username or password is incorrect</p>
+            <button type="submit" class="btn btn-primary btn-login">login</button>
+        </form>
+        <br>
+    </div>
+</div>
