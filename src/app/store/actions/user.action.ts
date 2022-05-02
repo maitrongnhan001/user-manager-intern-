@@ -6,6 +6,11 @@ export const addUser = createAction(
     props<{user: UserModel}>()
 );
 
+export const addUsers = createAction(
+    '[user] add multiple',
+    props<{users: UserModel[]}>()
+);
+
 export const updateUser = createAction(
     '[user] update',
     props<{index: number, user: UserModel}>()

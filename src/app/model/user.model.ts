@@ -3,6 +3,6 @@ export class UserModel {
     lastName: string = '';
     email: string = '';
     phone: string = '';
-    DOB: Date|null = null;
+    DOB: string|null = null;
     status: number = 1;
 }

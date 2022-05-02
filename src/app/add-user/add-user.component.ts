@@ -63,7 +63,7 @@ export class AddUserComponent implements OnInit {
       lastName: this.getLastName.value,
       email: this.getEmail.value,
       phone: this.getPhone.value,
-      DOB: new Date(this.getDOB.value),
+      DOB: this.getDOB.value,
       status: this.getStatus.value
     }
 

@@ -29,18 +29,12 @@ export class UpdateUserComponent implements OnInit {
       this.userInformation = data;
     })
 
-    const DOB = {
-      year: `${this.userInformation.DOB?.getFullYear()}`,
-      month: (this.userInformation.DOB?.getMonth() as number + 1) < 10 ? `0${(this.userInformation.DOB?.getMonth() as number + 1)}` : `${(this.userInformation.DOB?.getMonth() as number + 1)}`,
-      date: (this.userInformation.DOB?.getDate() as number) < 10 ? `0${(this.userInformation.DOB?.getDate() as number)}` : `${(this.userInformation.DOB?.getDate() as number)}`
-    }
-
     this.userFormControl = new FormGroup({
       firstName: new FormControl(this.userInformation.firstName, Validators.required),
       lastName: new FormControl(this.userInformation.lastName , Validators.required),
       email: new FormControl(this.userInformation.email, [Validators.required, Validators.email]),
       phone: new FormControl(this.userInformation.phone, Validators.required),
-      DOB: new FormControl(`${DOB.year}-${DOB.month}-${DOB.date}`),
+      DOB: new FormControl(this.userInformation.DOB),
       status: new FormControl(this.userInformation.status, Validators.required),
     });
 
@@ -82,7 +76,7 @@ export class UpdateUserComponent implements OnInit {
       lastName: this.getLastName.value,
       email: this.getEmail.value,
       phone: this.getPhone.value,
-      DOB: new Date(this.getDOB.value),
+      DOB: this.getDOB.value,
       status: this.getStatus.value
     }
 

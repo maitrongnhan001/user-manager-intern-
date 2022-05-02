@@ -3,7 +3,8 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { elementAt, Observable } from 'rxjs';
 import { UserModel } from '../model/user.model';
-import { deleteUser, updateUser } from '../store/actions/user.action';
+import { UserService } from '../service/user.service';
+import { addUsers, deleteUser, updateUser } from '../store/actions/user.action';
 import { searchUser, selectQuantityUser, selectUserLimit } from '../store/selecters/user.selector';
 
 @Component({
@@ -21,7 +22,8 @@ export class ListUserComponent implements OnInit {
 
   constructor(
     private store: Store,
-    private router: Router
+    private router: Router,
+    private usersAPI: UserService
   ) {
     //because start element in user store start in 0, so this page must sub 1
     const startPosition = (this.page - 1) * 10;
@@ -50,6 +52,9 @@ export class ListUserComponent implements OnInit {
   }
 
   ngOnInit(): void {
+      this.usersAPI.getAllUser().subscribe(data => {
+        this.store.dispatch(addUsers({users: data}))
+      })
   }
 
   handleClickPageNumber(pageNumber: number): void {
@@ -146,7 +151,6 @@ export class ListUserComponent implements OnInit {
 
   handleChangeStatus(value: string, index: number): void {
     let user = { ...this.listUser[index].user };
-    console.log(value)
     user.status = parseInt(value);
     this.store.dispatch(updateUser({ index: index, user: user }));
   }
