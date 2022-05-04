@@ -6,6 +6,7 @@ import { ListUserComponent } from './list-user/list-user.component';
 import { LoginComponent } from './login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { UpdateUserComponent } from './update-user/update-user.component';
+import { AuthGuardService as authGuard } from './service/auth-guard.service';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -13,9 +14,9 @@ const routes: Routes = [
     path: 'home',
     component: HomePageComponent,
     children: [
-      { path: '', component: ListUserComponent },
-      { path: 'add', component: AddUserComponent },
-      { path: 'edit/:index', component: UpdateUserComponent }
+      { path: '', component: ListUserComponent, canActivate: [authGuard] },
+      { path: 'add', component: AddUserComponent, canActivate: [authGuard] },
+      { path: 'edit/:index', component: UpdateUserComponent, canActivate: [authGuard] }
     ]
   },
   { path: '', redirectTo: 'login', pathMatch: 'full'  },

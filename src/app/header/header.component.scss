@@ -13,5 +13,9 @@
     .header-logout {
         padding-right: 3rem;
         font-size: 18px;
+
+        span {
+            cursor: pointer;
+        }
     }
 }

@@ -31,6 +31,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { userReducer } from './store/reducers/user.reducer';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthService } from './service/auth.service';
+import { AuthGuardService } from './service/auth-guard.service';
+import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 
 @NgModule({
   declarations: [
@@ -65,9 +68,20 @@ import { HttpClientModule } from '@angular/common/http';
     MdbValidationModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => {
+          return '';
+        }
+      }
+    }),
     StoreModule.forRoot({user: userReducer}),
   ],
-  providers: [],
+  providers: [
+    JwtHelperService,
+    AuthService,
+    AuthGuardService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

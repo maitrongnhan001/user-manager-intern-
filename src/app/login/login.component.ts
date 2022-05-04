@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoginService } from '../service/login.service';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,10 @@ export class LoginComponent implements OnInit {
   loginFormControl: FormGroup
   errorLogin: boolean = false;
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    private auth: LoginService
+  ) {
     this.loginFormControl = new FormGroup({
       email: new FormControl(null, [Validators.required, Validators.email]),
       password: new FormControl(null, Validators.required)
@@ -33,13 +37,11 @@ export class LoginComponent implements OnInit {
     this.loginFormControl.markAllAsTouched();
     if (this.loginFormControl.invalid) return;
 
-    if (this.getEmail.value == 'maitrongnhan.001@gmail.com') {
-      if (this.getPassword.value == '12345') {
-        this.router.navigate(['home']);
-        this.errorLogin = false;
-        return;
-      }
-    } 
-    this.errorLogin = true;
+    this.auth.login(this.getEmail.value, this.getPassword.value);
+
+    if (!localStorage.getItem('username')) {
+      console.log(localStorage.getItem('username'))
+      this.errorLogin = true;
+    }
   }
 }
