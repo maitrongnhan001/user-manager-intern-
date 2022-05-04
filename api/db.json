@@ -44,5 +44,9 @@
         {"firstName": "Tran Tuyet", "lastName": "Nhung", "email": "trantuyetnhung@gmail8.com", "phone": "0352261174", "DOB": "2000-07-12", "status": 2},
         {"firstName": "Nguyen Van", "lastName": "Linh", "email": "nguyenvanlinh@gmail9.com", "phone": "0349189699", "DOB": "2000-05-12", "status": 2},
         {"firstName": "Quach Thong", "lastName": "Thai", "email": "quachthongthai@gmail0.com", "phone": "0382890539", "DOB": "2000-03-12", "status": 1}
-    ]
+    ],
+    "auth": {
+        "username": "maitrongnhan@gmail.com",
+        "password": "12345"
+    }
 }
