@@ -42,6 +42,23 @@
             <mdb-error *ngIf="getStatus?.invalid && getStatus?.touched" >first name is required</mdb-error>
         </mdb-form-control>
 
+        <div class="social-group" formGroupName="social">
+            <mdb-form-control class="margin-bottom-space">
+                <input mdbInput mdbValidate formControlName="facebook" type="text" class="form-control" id="facebook">
+                <label mdbLabel for="facebook" class="form-label">facebook</label>
+            </mdb-form-control>
+
+            <mdb-form-control class="margin-bottom-space">
+                <input mdbInput mdbValidate formControlName="linkedin" type="text" class="form-control" id="linkedin">
+                <label mdbLabel for="linkedin" class="form-label">linkedin</label>
+            </mdb-form-control>
+
+            <mdb-form-control class="margin-bottom-space">
+                <input mdbInput mdbValidate formControlName="twitter" type="text" class="form-control" id="twitter">
+                <label mdbLabel for="twitter" class="form-label">twitter</label>
+            </mdb-form-control>
+        </div>
+
         <a routerLink="/home" class="btn btn-dark">back</a>
         <button type="submit" class="btn btn-primary"> add user </button>
     </form>

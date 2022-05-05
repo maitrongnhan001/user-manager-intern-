@@ -24,6 +24,11 @@ export class AddUserComponent implements OnInit {
       phone: new FormControl(null, Validators.required),
       DOB: new FormControl(null),
       status: new FormControl(null, Validators.required),
+      social: new FormGroup({
+        facebook: new FormControl(null),
+        linkedin: new FormControl(null),
+        twitter: new FormControl(null)
+      })
     });
   }
 
@@ -50,6 +55,18 @@ export class AddUserComponent implements OnInit {
     return this.userFormControl.get('status')!;
   }
 
+  get getFacebook(): AbstractControl {
+    return this.userFormControl.get('social')?.get('facebook')!;
+  }
+
+  get getLinkedIn(): AbstractControl {
+    return this.userFormControl.get('social')?.get('linkedin')!;
+  }
+
+  get getTwitter(): AbstractControl {
+    return this.userFormControl.get('social')?.get('twitter')!;
+  }
+
   ngOnInit(): void {
   }
 
@@ -58,15 +75,7 @@ export class AddUserComponent implements OnInit {
 
     if (this.userFormControl.invalid) return;
 
-    const user: UserModel = {
-      firstName: this.getFirstName.value,
-      lastName: this.getLastName.value,
-      email: this.getEmail.value,
-      phone: this.getPhone.value,
-      DOB: this.getDOB.value,
-      status: this.getStatus.value
-    }
-
+    const user: UserModel = this.userFormControl.value;
     this.store.dispatch(addUser({user: user}));
     this.router.navigate(['home']);
   }

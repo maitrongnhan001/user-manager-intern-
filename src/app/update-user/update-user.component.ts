@@ -36,9 +36,12 @@ export class UpdateUserComponent implements OnInit {
       phone: new FormControl(this.userInformation.phone, Validators.required),
       DOB: new FormControl(this.userInformation.DOB),
       status: new FormControl(this.userInformation.status, Validators.required),
+      social: new FormGroup({
+        facebook: new FormControl(this.userInformation.social.facebook),
+        linkedin: new FormControl(this.userInformation.social.linkedin),
+        twitter: new FormControl(this.userInformation.social.twitter)
+      })
     });
-
-    //console.log(this.userInformation.DOB?.get)
   }
 
   get getFirstName(): AbstractControl {
@@ -64,6 +67,18 @@ export class UpdateUserComponent implements OnInit {
     return this.userFormControl.get('status')!;
   }
 
+  get getFacebook(): AbstractControl {
+    return this.userFormControl.get('social')?.get('facebook')!;
+  }
+
+  get getLinkedIn(): AbstractControl {
+    return this.userFormControl.get('social')?.get('linkedin')!;
+  }
+
+  get getTwitter(): AbstractControl {
+    return this.userFormControl.get('social')?.get('twitter')!;
+  }
+
   ngOnInit(): void {}
 
   handleSubmit() :void {
@@ -71,15 +86,7 @@ export class UpdateUserComponent implements OnInit {
 
     if (this.userFormControl.invalid) return;
 
-    const user: UserModel = {
-      firstName: this.getFirstName.value,
-      lastName: this.getLastName.value,
-      email: this.getEmail.value,
-      phone: this.getPhone.value,
-      DOB: this.getDOB.value,
-      status: this.getStatus.value
-    }
-
+    const user: UserModel = this.userFormControl.value;
     this.store.dispatch(updateUser({index: this.userIndex, user: user}));
     this.router.navigate(['home']);
   }

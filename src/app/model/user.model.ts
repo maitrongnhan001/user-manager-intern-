@@ -5,4 +5,11 @@ export class UserModel {
     phone: string = '';
     DOB: string|null = null;
     status: number = 1;
+    social: Social = new Social();
+}
+
+export class Social {
+    facebook: string = '';
+    linkedin: string = '';
+	twitter: string = '';
 }

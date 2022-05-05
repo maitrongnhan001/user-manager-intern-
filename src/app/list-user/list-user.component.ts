@@ -52,9 +52,11 @@ export class ListUserComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (!(this.listUser.length > 0)) {
       this.usersAPI.getAllUser().subscribe(data => {
         this.store.dispatch(addUsers({users: data}))
       })
+    }
   }
 
   handleClickPageNumber(pageNumber: number): void {
@@ -79,8 +81,6 @@ export class ListUserComponent implements OnInit {
         this.listUser.push({ statusEmail: false, emailShow: emailString, user: element });
       });
     });
-
-    console.log(this.listUser.length)
   }
 
   handleClickEdit(index: number): void {
